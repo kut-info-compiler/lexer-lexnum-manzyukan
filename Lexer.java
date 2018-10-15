@@ -53,7 +53,14 @@ public class Lexer {
 		/* TODO */
 		/* 状態遷移表を作る */
 		/*   delta[現状態][入力記号] */
-
+		{ 1, -1, 4, 5 , 6, -1},
+		{-1, -1, 7, 7, -1, -1},
+		{-1, -1, 2, 2,  6, -1},
+		{-1, -1, 6, 6,  6, -1},
+		{ 1,  3, 2, 2,  6, -1},
+		{ 7, -1, 5, 5,  6, -1},
+		{-1, -1, 6, 6,  6, -1},
+		{-1, -1, 7, 7, -1, -1}
 		/*  P  X  0  1  A  OTHER */
 		/*{ ?, ?, ?, ?, ?, ?}, /* 状態0 */
 		/*{ ?, ?, ?, ?, ?, ?}, /* 状態1 */
@@ -84,7 +91,20 @@ public class Lexer {
 			/* TODO */
 			/* 行先がなければループを抜ける */
 			/* 行先が受理状態であれば「最後の受理状態」を更新する */
-
+			if (nextState == -1)break;
+			
+			else if(nextState == 7){
+				acceptMarker = Token.TYPE_DEC;
+				acceptPos = p;
+			}
+			else if(nextState >= 2){
+				acceptMarker = Token.TYPE_INT;
+				if(nextState >= 4){
+					acceptPos = p;
+				}
+			}
+			
+			
 			currentState = nextState;
 		}
 		
@@ -97,6 +117,6 @@ public class Lexer {
 		Lexer lex = new Lexer();
 		Token t = lex.getToken(str, 0);
 		System.out.print(t.tokenType);
-		System.out.println(str.substring(t.start, t.start + t.len));
+		System.out.print(str.substring(t.start, t.start + t.len));
 	}
 }
