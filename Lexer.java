@@ -117,6 +117,6 @@ public class Lexer {
 		Lexer lex = new Lexer();
 		Token t = lex.getToken(str, 0);
 		System.out.print(t.tokenType);
-		System.out.print(str.substring(t.start, t.start + t.len));
+		System.out.println(str.substring(t.start, t.start + t.len));
 	}
 }
