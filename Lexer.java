@@ -97,11 +97,9 @@ public class Lexer {
 				acceptMarker = Token.TYPE_DEC;
 				acceptPos = p;
 			}
-			else if(nextState >= 2){
+			else if(nextState >= 4){
 				acceptMarker = Token.TYPE_INT;
-				if(nextState >= 4){
 					acceptPos = p;
-				}
 			}
 			
 			
